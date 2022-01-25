@@ -12,6 +12,10 @@ export const isWinningWord = (word: string) => {
   return solution === word
 }
 
+export const getWordSize = () => {
+  return solution.length;
+}
+
 export const getWordOfDay = () => {
   // January 1, 2022 Game Epoch
   const epochMs = 1641013200000

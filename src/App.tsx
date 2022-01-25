@@ -8,7 +8,7 @@ import { AboutModal } from './components/modals/AboutModal'
 import { InfoModal } from './components/modals/InfoModal'
 import { WinModal } from './components/modals/WinModal'
 import { StatsModal } from './components/modals/StatsModal'
-import { isWordInWordList, isWinningWord, solution } from './lib/words'
+import { isWordInWordList, isWinningWord, solution, getWordSize } from './lib/words'
 import { addStatsForCompletedGame, loadStats } from './lib/stats'
 import {
   loadGameStateFromLocalStorage,
@@ -53,8 +53,9 @@ function App() {
     }
   }, [isGameWon])
 
+  const wordSize = getWordSize()
   const onChar = (value: string) => {
-    if (currentGuess.length < 5 && guesses.length < 6 && !isGameWon) {
+    if (currentGuess.length < wordSize && guesses.length < 6 && !isGameWon) {
       setCurrentGuess(`${currentGuess}${value}`)
     }
   }
@@ -64,7 +65,7 @@ function App() {
   }
 
   const onEnter = () => {
-    if (!(currentGuess.length === 5) && !isGameLost) {
+    if (!(currentGuess.length === wordSize) && !isGameLost) {
       setIsNotEnoughLetters(true)
       return setTimeout(() => {
         setIsNotEnoughLetters(false)
@@ -80,7 +81,7 @@ function App() {
 
     const winningWord = isWinningWord(currentGuess)
 
-    if (currentGuess.length === 5 && guesses.length < 6 && !isGameWon) {
+    if (currentGuess.length === wordSize && guesses.length < 6 && !isGameWon) {
       setGuesses([...guesses, currentGuess])
       setCurrentGuess('')
 
@@ -109,7 +110,7 @@ function App() {
           onClick={() => setIsStatsModalOpen(true)}
         />
       </div>
-      <Grid guesses={guesses} currentGuess={currentGuess} />
+      <Grid guesses={guesses} currentGuess={currentGuess} wordSize={wordSize} />
       <Keyboard
         onChar={onChar}
         onDelete={onDelete}
