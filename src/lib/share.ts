@@ -2,10 +2,32 @@ import { getGuessStatuses } from './statuses'
 import { solutionIndex } from './words'
 
 export const shareStatus = (guesses: string[]) => {
-  navigator.clipboard.writeText(
-    `Not Wordle ${solutionIndex} ${guesses.length}/6\n\n` +
-    generateEmojiGrid(guesses)
-  )
+
+  /*if (navigator.share) {
+    console.log("Congrats! Your browser supports Web Share API");
+    navigator
+      .share({
+        text: `SPFC Wordle ${solutionIndex-23} ${guesses.length}/6\n\n` +
+        generateEmojiGrid(guesses)
+      })
+      .then(() => {
+        console.log("Sharing successfull");
+      })
+      .catch(() => {
+        console.log("Sharing failed");
+      });
+  } else {
+    navigator.clipboard.writeText(
+      `SPFC Wordle ${solutionIndex-23} ${guesses.length}/6\n\n` +
+      generateEmojiGrid(guesses)
+    )
+  }*/
+
+  const text = `SPFC Wordle ${solutionIndex-24} ${guesses.length}/6%0a%0a` +
+  generateEmojiGrid(guesses) + `%0a%0aricardoar.com/spfc`;
+
+  window.open('https://twitter.com/intent/tweet?text=' + text, '_blank');
+
 }
 
 export const generateEmojiGrid = (guesses: string[]) => {
@@ -17,14 +39,14 @@ export const generateEmojiGrid = (guesses: string[]) => {
         .map((letter, i) => {
           switch (status[i]) {
             case 'correct':
-              return '🟩'
+              return '🟥'
             case 'present':
-              return '🟨'
+              return '⬛'
             default:
               return '⬜'
           }
         })
         .join('')
     })
-    .join('\n')
+    .join('%0a')
 }

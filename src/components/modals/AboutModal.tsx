@@ -7,21 +7,21 @@ type Props = {
 
 export const AboutModal = ({ isOpen, handleClose }: Props) => {
   return (
-    <BaseModal title="About" isOpen={isOpen} handleClose={handleClose}>
+    <BaseModal title="Info" isOpen={isOpen} handleClose={handleClose}>
       <p className="text-sm text-gray-500">
-        This is an open source clone of the game Wordle -{' '}
+        Este jogo foi criado a partir de um código Open Source -{' '}
         <a
           href="https://github.com/hannahcode/wordle"
           className="underline font-bold"
         >
-          check out the code here
+          confira o código aqui
         </a>{' '}
-        and{' '}
+        e{' '}
         <a
           href="https://www.powerlanguage.co.uk/wordle/"
           className="underline font-bold"
         >
-          play the original here
+          jogue o Wordle original aqui
         </a>
       </p>
     </BaseModal>

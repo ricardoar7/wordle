@@ -11,10 +11,10 @@ type Props = {
 
 export const StatsModal = ({ isOpen, handleClose, gameStats }: Props) => {
   return (
-    <BaseModal title="Statistics" isOpen={isOpen} handleClose={handleClose}>
+    <BaseModal title="Estatísticas" isOpen={isOpen} handleClose={handleClose}>
       <StatBar gameStats={gameStats} />
       <h4 className="text-lg leading-6 font-medium text-gray-900">
-        Guess Distribution
+        Distribuição de acertos
       </h4>
       <Histogram gameStats={gameStats} />
     </BaseModal>
