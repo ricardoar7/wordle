@@ -22,9 +22,10 @@ export const getWordOfDay = () => {
   const epochMs = 1715310000000
   const now = Date.now()
   const msInDay = 86400000
-  const index = Math.floor((now - epochMs) / msInDay)
+  const index = Math.floor((now - epochMs) / msInDay) % WORDS.length
 
   console.log(index);
+  console.log(WORDS.length);
 
   return {
     solution: WORDS[index].toUpperCase(),
