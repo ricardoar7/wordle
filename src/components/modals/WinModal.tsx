@@ -3,10 +3,12 @@ import { CheckIcon } from '@heroicons/react/outline'
 import { MiniGrid } from '../mini-grid/MiniGrid'
 import { shareStatus } from '../../lib/share'
 import { BaseModal } from './BaseModal'
+import { REFERENCES } from '../../constants/references'
 
 type Props = {
   isOpen: boolean
   handleClose: () => void
+  index: number
   guesses: string[]
   handleShare: () => void
 }
@@ -14,11 +16,12 @@ type Props = {
 export const WinModal = ({
   isOpen,
   handleClose,
+  index,
   guesses,
   handleShare,
 }: Props) => {
   return (
-    <BaseModal title="Perfeito!" isOpen={isOpen} handleClose={handleClose}>
+    <BaseModal title="A Moeda caiu em pé!" isOpen={isOpen} handleClose={handleClose}>
       <div>
         <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-600">
           <CheckIcon className="h-6 w-6 text-white" aria-hidden="true" />
@@ -31,7 +34,10 @@ export const WinModal = ({
           </Dialog.Title>
           <div className="mt-2">
             <MiniGrid guesses={guesses} />
-            <p className="text-sm text-gray-500">A moeda caiu em pé!</p>
+            <p className="mt-3"><img src={REFERENCES[index][1]} className="border-2 border-red-600" alt={REFERENCES[index][0]}></img></p>
+            <br></br>
+            <p className="text-sm text-gray-500">Era o {REFERENCES[index][0]}! <a href={REFERENCES[index][2]} className="underline" target="_blank" rel="noreferrer">Clique para conhecer</a></p>
+
           </div>
         </div>
       </div>

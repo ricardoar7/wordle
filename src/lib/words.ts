@@ -17,11 +17,14 @@ export const getWordSize = () => {
 }
 
 export const getWordOfDay = () => {
-  // January 1, 2022 Game Epoch
-  const epochMs = 1641006000000
+  // January 1, 2022 Game Epoch - 1641006000000
+  // May 10, 2024          - 1715310000000
+  const epochMs = 1715310000000
   const now = Date.now()
   const msInDay = 86400000
   const index = Math.floor((now - epochMs) / msInDay)
+
+  console.log(index);
 
   return {
     solution: WORDS[index].toUpperCase(),

@@ -23,7 +23,7 @@ export const shareStatus = (guesses: string[]) => {
     )
   }*/
 
-  const text = `SPFC Wordle ${solutionIndex-24} ${guesses.length}/6%0a%0a` +
+  const text = `SPFC Wordle ${solutionIndex+1} ${guesses.length}/6%0a%0a` +
   generateEmojiGrid(guesses) + `%0a%0aricardoar.com/spfc`;
 
   window.open('https://twitter.com/intent/tweet?text=' + text, '_blank');

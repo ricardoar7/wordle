@@ -8,7 +8,7 @@ import { AboutModal } from './components/modals/AboutModal'
 import { InfoModal } from './components/modals/InfoModal'
 import { WinModal } from './components/modals/WinModal'
 import { StatsModal } from './components/modals/StatsModal'
-import { isWordInWordList, isWinningWord, solution, getWordSize } from './lib/words'
+import { isWordInWordList, isWinningWord, solution, solutionIndex, getWordSize } from './lib/words'
 import { addStatsForCompletedGame, loadStats } from './lib/stats'
 import {
   loadGameStateFromLocalStorage,
@@ -122,6 +122,7 @@ function App() {
       <WinModal
         isOpen={isWinModalOpen}
         handleClose={() => setIsWinModalOpen(false)}
+        index={solutionIndex}
         guesses={guesses}
         handleShare={() => {
           setIsWinModalOpen(false)
